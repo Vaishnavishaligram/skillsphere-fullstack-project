@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-paper text-ink font-body antialiased;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display text-ink-900;
+  }
+  ::selection {
+    @apply bg-signal-100 text-ink-900;
+  }
+  :focus-visible {
+    outline: 2px solid #0F8A8A;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2.5 text-sm font-semibold transition-colors duration-150 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-primary {
+    @apply btn bg-ink-900 text-white hover:bg-ink-800;
+  }
+  .btn-accent {
+    @apply btn bg-signal text-ink-900 hover:bg-signal-600;
+  }
+  .btn-outline {
+    @apply btn border border-ink-200 text-ink-900 hover:border-ink-900 bg-transparent;
+  }
+  .btn-ghost {
+    @apply btn text-ink-600 hover:bg-ink-50;
+  }
+  .btn-danger {
+    @apply btn bg-rose text-white hover:opacity-90;
+  }
+  .btn-sm {
+    @apply px-3 py-1.5 text-xs;
+  }
+
+  /* Card - hairline border, low radius, low shadow: crafted/utilitarian not bubbly */
+  .card {
+    @apply bg-white border border-ink-100 rounded-card shadow-pin;
+  }
+
+  /* Inputs */
+  .input {
+    @apply w-full rounded-md border border-ink-100 bg-white px-3.5 py-2.5 text-sm text-ink-900 placeholder:text-ink-400 focus:border-pin focus:ring-1 focus:ring-pin outline-none transition;
+  }
+  .label {
+    @apply block text-xs font-semibold uppercase tracking-wide text-ink-400 mb-1.5;
+  }
+
+  /* Badges */
+  .badge {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold;
+  }
+  .badge-verified {
+    @apply badge bg-pin/10 text-pin;
+  }
+  .badge-open {
+    @apply badge bg-moss/10 text-moss;
+  }
+  .badge-progress {
+    @apply badge bg-signal-100 text-signal-600;
+  }
+  .badge-closed {
+    @apply badge bg-ink-100 text-ink-400;
+  }
+  .badge-danger {
+    @apply badge bg-rose/10 text-rose;
+  }
+
+  /* Signature: node/pin connector - used in loading states, empty states, sidebar */
+  .node-dot {
+    @apply relative inline-block w-2 h-2 rounded-full bg-pin;
+  }
+  .node-line {
+    @apply absolute top-1/2 left-full h-px w-3 bg-ink-100;
+  }
+
+  .eyebrow {
+    @apply text-xs font-mono uppercase tracking-widest text-ink-400;
+  }
+
+  .sidebar-link {
+    @apply flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium text-ink-400 hover:text-ink-900 hover:bg-ink-50 transition-colors;
+  }
+  .sidebar-link.active {
+    @apply text-ink-900 bg-ink-50;
+  }
+}
+
+/* Signature loading pulse for the node-network mark */
+@keyframes pin-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1); }
+}
+.animate-pin-pulse {
+  animation: pin-pulse 1.4s ease-in-out infinite;
+}
