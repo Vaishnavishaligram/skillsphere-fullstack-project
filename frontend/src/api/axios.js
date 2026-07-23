@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || 'import axios from 'axios';
-
-const API_URL = import.meta.env.VITE_API_URL || "https://skillsphere-backend-gwul.onrender.com/";
+const API_URL =
+  import.meta.env.VITE_API_URL ||
+  'https://skillsphere-backend-gwul.onrender.com/api';
 
 const api = axios.create({
   baseURL: API_URL,
@@ -12,7 +12,9 @@ const api = axios.create({
 // Attach access token to every request
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('accessToken');
-  if (token) config.headers.Authorization = `Bearer ${token}`;
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
   return config;
 });
 
@@ -30,7 +32,11 @@ api.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
 
-    if (error.response?.status === 401 && !originalRequest._retry && !originalRequest.url.includes('/auth/')) {
+    if (
+      error.response?.status === 401 &&
+      !originalRequest._retry &&
+      !originalRequest.url.includes('/auth/')
+    ) {
       if (isRefreshing) {
         return new Promise((resolve, reject) => {
           queue.push({ resolve, reject });
@@ -46,9 +52,15 @@ api.interceptors.response.use(
       isRefreshing = true;
 
       try {
-        const { data } = await axios.post(`${API_URL}/auth/refresh-token`, {}, { withCredentials: true });
+        const { data } = await axios.post(
+          `${API_URL}/auth/refresh-token`,
+          {},
+          { withCredentials: true }
+        );
+
         localStorage.setItem('accessToken', data.accessToken);
         processQueue(null, data.accessToken);
+
         originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
         return api(originalRequest);
       } catch (refreshError) {
