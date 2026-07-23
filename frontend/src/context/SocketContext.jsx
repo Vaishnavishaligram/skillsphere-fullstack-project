@@ -8,7 +8,7 @@ import { queryClient } from '../lib/queryClient';
 
 const SocketContext = createContext(null);
 
-const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'http://localhost:5000';
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || "https://skillsphere-backend-gwul.onrender.com/";
 
 // Maps each real-time notification type to where its cached server data
 // lives, so a live event invalidates exactly the React Query caches a
