@@ -21,7 +21,7 @@ cp .env.example .env
 npm run dev
 ```
 
-Open `http://localhost:5173`.
+Open "https://skillsphere-backend-gwul.onrender.com/".
 
 ## 3. Environment variables
 
