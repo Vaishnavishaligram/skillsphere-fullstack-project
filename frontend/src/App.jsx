@@ -4,8 +4,8 @@ import { useDispatch } from 'react-redux';
 import { Toaster } from 'react-hot-toast';
 import { fetchMe } from './store/authSlice';
 
-import AuthLayout from './layouts/AuthLayout';
-import DashboardLayout from './layouts/DashboardLayout';
+import AuthLayout from "./layout/AuthLayout";
+import DashboardLayout from "./layout/DashboardLayout";
 import ProtectedRoute from './components/ProtectedRoute';
 
 import Home from './pages/Home';
