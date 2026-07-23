@@ -14,7 +14,7 @@ export const authApi = {
   setupTwoFactor: () => api.post('/auth/2fa/setup'),
   confirmTwoFactor: (code) => api.post('/auth/2fa/confirm', { code }),
   disableTwoFactor: (password) => api.post('/auth/2fa/disable', { password }),
-  googleLoginUrl: () => `${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/auth/google`,
+  googleLoginUrl: () => `${import.meta.env.VITE_API_URL || "https://skillsphere-backend-gwul.onrender.com/"}/auth/google`,
 };
 
 // ---------- Users / Profiles ----------
